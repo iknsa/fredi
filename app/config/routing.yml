@@ -1,3 +1,7 @@
+fredi_app:
+    resource: "@frediAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

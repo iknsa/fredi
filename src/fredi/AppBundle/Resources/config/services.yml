@@ -1,0 +1,4 @@
+services:
+#    fredi_app.example:
+#        class: fredi\AppBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
