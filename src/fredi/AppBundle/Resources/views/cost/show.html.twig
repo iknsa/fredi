@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cost</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cost.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Reason</th>
+                <td>{{ cost.reason }}</td>
+            </tr>
+            <tr>
+                <th>Journey</th>
+                <td>{{ cost.journey }}</td>
+            </tr>
+            <tr>
+                <th>Km</th>
+                <td>{{ cost.km }}</td>
+            </tr>
+            <tr>
+                <th>Journeycost</th>
+                <td>{{ cost.journeyCost }}</td>
+            </tr>
+            <tr>
+                <th>Toll</th>
+                <td>{{ cost.toll }}</td>
+            </tr>
+            <tr>
+                <th>Meal</th>
+                <td>{{ cost.meal }}</td>
+            </tr>
+            <tr>
+                <th>Accommodation</th>
+                <td>{{ cost.accommodation }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ cost.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cost_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('cost_edit', { 'id': cost.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

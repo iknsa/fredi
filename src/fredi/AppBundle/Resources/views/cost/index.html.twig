@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cost list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Journey</th>
+                <th>Km</th>
+                <th>Journeycost</th>
+                <th>Toll</th>
+                <th>Meal</th>
+                <th>Accommodation</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cost in costs %}
+            <tr>
+                <td><a href="{{ path('cost_show', { 'id': cost.id }) }}">{{ cost.id }}</a></td>
+                <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ cost.reason }}</td>
+                <td>{{ cost.journey }}</td>
+                <td>{{ cost.km }}</td>
+                <td>{{ cost.journeyCost }}</td>
+                <td>{{ cost.toll }}</td>
+                <td>{{ cost.meal }}</td>
+                <td>{{ cost.accommodation }}</td>
+                <td>{{ cost.total }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cost_show', { 'id': cost.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cost_edit', { 'id': cost.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cost_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
