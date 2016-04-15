@@ -4,4 +4,4 @@ fredi_app_cost:
 
 fredi_app_homepage:
     path:     /
-    defaults: { _controller: frediAppBundle:Default:index }
+    defaults: { _controller: frediAppBundle:App:landing }

@@ -24,7 +24,7 @@ class CostController extends Controller
 
         $costs = $em->getRepository('frediAppBundle:Cost')->findAll();
 
-        return $this->render('cost/index.html.twig', array(
+        return $this->render('frediAppBundle:cost:index.html.twig', array(
             'costs' => $costs,
         ));
     }
@@ -47,7 +47,7 @@ class CostController extends Controller
             return $this->redirectToRoute('cost_show', array('id' => $cost->getId()));
         }
 
-        return $this->render('cost/new.html.twig', array(
+        return $this->render('frediAppBundle:cost:new.html.twig', array(
             'cost' => $cost,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class CostController extends Controller
     {
         $deleteForm = $this->createDeleteForm($cost);
 
-        return $this->render('cost/show.html.twig', array(
+        return $this->render('frediAppBundle:cost:show.html.twig', array(
             'cost' => $cost,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class CostController extends Controller
             return $this->redirectToRoute('cost_edit', array('id' => $cost->getId()));
         }
 
-        return $this->render('cost/edit.html.twig', array(
+        return $this->render('frediAppBundle:cost:edit.html.twig', array(
             'cost' => $cost,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
