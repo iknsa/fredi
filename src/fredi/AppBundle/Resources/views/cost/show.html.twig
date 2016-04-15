@@ -1,9 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends '::fredi/base.html.twig' %}
 
 {% block body %}
-    <h1>Cost</h1>
-
-    <table>
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Cost</h3>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -47,18 +50,9 @@
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cost_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('cost_edit', { 'id': cost.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a href="{{ path('cost_index') }}" class="btn btn-success pull-left">Retour</a>
+    <a href="{{ path('cost_edit', { 'id': cost.id }) }}" class="btn btn-primary pull-left">Modifier</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger pull-left">
+    {{ form_end(delete_form) }}
 {% endblock %}

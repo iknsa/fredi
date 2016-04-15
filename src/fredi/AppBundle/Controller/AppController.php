@@ -10,4 +10,9 @@ class AppController extends Controller
     {
         return $this->render('frediAppBundle:App:landing.html.twig');
     }
+
+    public function dockbarAction()
+    {
+        return $this->render('frediAppBundle:App:dockbar.html.twig');
+    }
 }

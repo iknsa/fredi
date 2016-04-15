@@ -1,12 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends '::fredi/base.html.twig' %}
 
 {% block body %}
-    <h1>Cost list</h1>
-
-    <table>
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Bordereau</h3>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
         <thead>
-            <tr>
-                <th>Id</th>
+            <tr class="info">
                 <th>Date</th>
                 <th>Reason</th>
                 <th>Journey</th>
@@ -22,7 +24,6 @@
         <tbody>
         {% for cost in costs %}
             <tr>
-                <td><a href="{{ path('cost_show', { 'id': cost.id }) }}">{{ cost.id }}</a></td>
                 <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ cost.reason }}</td>
                 <td>{{ cost.journey }}</td>
@@ -46,10 +47,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cost_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('cost_new') }}" class="btn btn-success">Ajouter une note de frais</a>
 {% endblock %}

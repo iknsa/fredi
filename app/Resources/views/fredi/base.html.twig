@@ -3,10 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Fredi M2L!{% endblock %}</title>
-        {% block javascripts %}{% endblock %}
-        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ absolute_url(asset('assets/vendor/jquery/dist/jquery.min.js')) }}"></script>
+        {% endblock %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ absolute_url(asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css')) }}">
+        {% endblock %}
     </head>
-    <body>
+    <body class="{% block bodyClass %}{% endblock %}">
+
+        {% block dockbar %}
+            {{ render(controller('frediAppBundle:App:dockbar')) }}
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>

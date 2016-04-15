@@ -1,16 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends '::fredi/base.html.twig' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Enregistrer une note de frais</h1>
-
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Enregistrer une note de frais</h3>
+        </div>
+    </div>
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Enregistrer" class="btn btn-success pull-left" />
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('cost_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('cost_index') }}" class="btn btn-info pull-left">Retour</a>
 {% endblock %}
