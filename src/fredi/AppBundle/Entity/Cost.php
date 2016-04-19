@@ -311,4 +311,3 @@ class Cost
         return $this->total;
     }
 }
-
