@@ -1,9 +1,26 @@
 {% block dockbar %}
-    <div class="container">
-        <ul class="nav navbar-nav">
-            <li><a href="{{ path('fredi_app_homepage') }}">Accueil</a></li>
-            <li><a href="{{ path('cost_new') }}">Enregistrer une note de frais</a></li>
-            <li><a href="{{ path('cost_index') }}">Consulter le bordereau</a></li>
-        </ul>
-    </div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('fredi_app_homepage') }}">Accueil</a></li>
+                <li><a href="{{ path('cost_new') }}">Enregistrer une note de frais</a></li>
+                <li><a href="{{ path('cost_index') }}">Consulter le bordereau</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="username">{{ app.user.username}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="icon-user"></i>profil</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-key"></i> logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    {% else %}
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('fredi_app_homepage') }}">Accueil</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">LogIN</a></li>
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}
