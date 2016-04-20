@@ -32,7 +32,6 @@ class User extends BaseUser
      */
     protected $groups;
 
-
     /**
      * Get id
      *
@@ -42,29 +41,4 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
-    /**
-     * Set groups
-     *
-     * @param string $groups
-     *
-     * @return User
-     */
-    public function setGroups($groups)
-    {
-        $this->groups = $groups;
-
-        return $this;
-    }
-
-    /**
-     * Get groups
-     *
-     * @return string
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
 }
-
