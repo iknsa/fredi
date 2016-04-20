@@ -6,6 +6,7 @@
 
         {% block javascripts %}
             <script type="text/javascript" src="{{ absolute_url(asset('assets/vendor/jquery/dist/jquery.min.js')) }}"></script>
+            <script type="text/javascript" src="{{ absolute_url(asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js')) }}"></script>
         {% endblock %}
 
         {% block stylesheets %}
@@ -17,6 +18,11 @@
         {% block dockbar %}
             {{ render(controller('frediAppBundle:App:dockbar')) }}
         {% endblock %}
-        {% block body %}{% endblock %}
+        <div class="container">
+            <div class="content">
+                {% block body %}{% endblock %}
+                {% block fos_user_content %}{% endblock %}
+            </div>
+        </div>
     </body>
 </html>
