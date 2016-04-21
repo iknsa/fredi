@@ -5,8 +5,9 @@ namespace fredi\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use fredi\AppBundle\Entity\Cost;
-use fredi\AppBundle\Form\CostType;
+use fredi\AppBundle\Entity\CostLine;
+use fredi\AppBundle\Form\CostTypeLine;
+use fredi\AppBundle\Entity\CostUser;
 
 /**
  * Cost controller.
@@ -20,9 +21,7 @@ class CostController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $costs = $em->getRepository('frediAppBundle:Cost')->findAll();
+        $costs = $this->getCosts();
 
         return $this->render('frediAppBundle:cost:index.html.twig', array(
             'costs' => $costs,
@@ -33,96 +32,50 @@ class CostController extends Controller
      * Creates a new Cost entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
-        $cost = new Cost();
-        $form = $this->createForm('fredi\AppBundle\Form\CostType', $cost);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cost);
-            $em->flush();
-
-            return $this->redirectToRoute('cost_show', array('id' => $cost->getId()));
-        }
-
-        return $this->render('frediAppBundle:cost:new.html.twig', array(
-            'cost' => $cost,
-            'form' => $form->createView(),
-        ));
+        return $this->render('frediAppBundle:cost:new.html.twig', array());
     }
 
     /**
      * Finds and displays a Cost entity.
      *
      */
-    public function showAction(Cost $cost)
+    public function showAction($id)
     {
-        $deleteForm = $this->createDeleteForm($cost);
+        $em = $this->getDoctrine()->getManager();
+
+        $cost = $em->getRepository('frediAppBundle:Cost')->findById($id);
+
+        $costline = $em->getRepository("frediAppBundle:CostLine")->findByCost($cost);
 
         return $this->render('frediAppBundle:cost:show.html.twig', array(
-            'cost' => $cost,
-            'delete_form' => $deleteForm->createView(),
+            'costline' => $costline[0]
         ));
+
     }
 
     /**
-     * Displays a form to edit an existing Cost entity.
-     *
+     * Method to retrieve all costs of a user
+     * @return array Costs
      */
-    public function editAction(Request $request, Cost $cost)
+    private function getCosts()
     {
-        $deleteForm = $this->createDeleteForm($cost);
-        $editForm = $this->createForm('fredi\AppBundle\Form\CostType', $cost);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cost);
-            $em->flush();
+        $costsArray = [];
 
-            return $this->redirectToRoute('cost_edit', array('id' => $cost->getId()));
+        if($this->getUser()) {
+            $users = $em->getRepository('frediAppBundle:User')->findBy(array('id' => $this->getUser()->getId()));
+            $user = $users[0];
+
+            $costs = $em->getRepository('frediAppBundle:CostUser')->findByUser($user);
+
+            foreach ($costs as $cost) {
+                $costsArray[] = $cost->getCost();
+            }
         }
 
-        return $this->render('frediAppBundle:cost:edit.html.twig', array(
-            'cost' => $cost,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a Cost entity.
-     *
-     */
-    public function deleteAction(Request $request, Cost $cost)
-    {
-        $form = $this->createDeleteForm($cost);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($cost);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('cost_index');
-    }
-
-    /**
-     * Creates a form to delete a Cost entity.
-     *
-     * @param Cost $cost The Cost entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Cost $cost)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('cost_delete', array('id' => $cost->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $costsArray;
     }
 }

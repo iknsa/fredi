@@ -2,6 +2,10 @@ fredi_app_cost:
     resource: "@frediAppBundle/Resources/config/routing/cost.yml"
     prefix:   /cost
 
+fredi_app_costline:
+    resource: "@frediAppBundle/Resources/config/routing/costline.yml"
+    prefix:   /costline
+
 fredi_app_homepage:
     path:     /
     defaults: { _controller: frediAppBundle:App:landing }
