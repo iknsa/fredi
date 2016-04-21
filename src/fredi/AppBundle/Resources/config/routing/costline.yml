@@ -1,0 +1,19 @@
+costline_index:
+    path:     /
+    defaults: { _controller: "frediAppBundle:CostLine:index" }
+    methods:  GET
+
+costline_new:
+    path:     /new
+    defaults: { _controller: "frediAppBundle:CostLine:new" }
+    methods:  [GET, POST]
+
+costline_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "frediAppBundle:CostLine:edit" }
+    methods:  [GET, POST]
+
+costline_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "frediAppBundle:CostLine:delete" }
+    methods:  DELETE
