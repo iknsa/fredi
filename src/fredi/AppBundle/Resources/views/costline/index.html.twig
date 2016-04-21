@@ -1,0 +1,55 @@
+{% extends '::fredi/base.html.twig' %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Bordereau</h3>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
+        <thead>
+            <tr class="info">
+                <th>Date</th>
+                <th>Ville de départ</th>
+                <th>Ville d'arrivée</th>
+                <th>Distance</th>
+                <th>Motif</th>
+                <th>Prix du voyage</th>
+                <th>Péage</th>
+                <th>Repas</th>
+                <th>Hébergement</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for costLine in costLines %}
+            <tr>
+                <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ costLine.cityStart }}</td>
+                <td>{{ costLine.cityEnd }}</td>
+                <td>{{ costLine.distance }}</td>
+                <td>{{ costLine.cost.reason }}</td>
+                <td>{{ costLine.cost.journeyCost }}</td>
+                <td>{{ costLine.cost.toll }}</td>
+                <td>{{ costLine.cost.meal }}</td>
+                <td>{{ costLine.cost.accommodation }}</td>
+                <td>{{ costLine.cost.total }}</td>
+                <td>
+                    <ul>
+                        <li style="list-style-type:none;">
+                            <a href="{{ path('costline_edit', { 'id': costLine.id }) }}" class="btn bnt-primary">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('costline_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

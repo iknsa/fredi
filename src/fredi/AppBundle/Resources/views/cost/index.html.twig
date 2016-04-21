@@ -10,13 +10,7 @@
         <thead>
             <tr class="info">
                 <th>Date</th>
-                <th>Reason</th>
-                <th>Journey</th>
-                <th>Km</th>
-                <th>Journeycost</th>
-                <th>Toll</th>
-                <th>Meal</th>
-                <th>Accommodation</th>
+                <th>Motif</th>
                 <th>Total</th>
                 <th>Actions</th>
             </tr>
@@ -26,20 +20,11 @@
             <tr>
                 <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ cost.reason }}</td>
-                <td>{{ cost.journey }}</td>
-                <td>{{ cost.km }}</td>
-                <td>{{ cost.journeyCost }}</td>
-                <td>{{ cost.toll }}</td>
-                <td>{{ cost.meal }}</td>
-                <td>{{ cost.accommodation }}</td>
                 <td>{{ cost.total }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('cost_show', { 'id': cost.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cost_edit', { 'id': cost.id }) }}">edit</a>
+                        <li style="list-style-type:none;">
+                            <a href="{{ path('cost_show', { 'id': cost.id }) }}" class="btn btn-primary">Aperçu</a>
                         </li>
                     </ul>
                 </td>
@@ -47,5 +32,5 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('cost_new') }}" class="btn btn-success">Ajouter une note de frais</a>
+    <a href="{{ path('costline_new') }}" class="btn btn-success">Ajouter une note de frais</a>
 {% endblock %}
