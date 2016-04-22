@@ -36,20 +36,6 @@ class Cost
     private $reason;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="journey", type="string", length=255, nullable=true)
-     */
-    private $journey;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="km", type="integer", nullable=true)
-     */
-    private $km;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="journeyCost", type="integer", nullable=true)
@@ -141,54 +127,6 @@ class Cost
     public function getReason()
     {
         return $this->reason;
-    }
-
-    /**
-     * Set journey
-     *
-     * @param string $journey
-     *
-     * @return Cost
-     */
-    public function setJourney($journey)
-    {
-        $this->journey = $journey;
-
-        return $this;
-    }
-
-    /**
-     * Get journey
-     *
-     * @return string
-     */
-    public function getJourney()
-    {
-        return $this->journey;
-    }
-
-    /**
-     * Set km
-     *
-     * @param integer $km
-     *
-     * @return Cost
-     */
-    public function setKm($km)
-    {
-        $this->km = $km;
-
-        return $this;
-    }
-
-    /**
-     * Get km
-     *
-     * @return int
-     */
-    public function getKm()
-    {
-        return $this->km;
     }
 
     /**

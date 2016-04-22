@@ -22,8 +22,6 @@ class CostType extends AbstractType
                 'placeholder' => array(
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
             ->add('reason', TextType::class)
-            ->add('journey', TextType::class)
-            ->add('km', IntegerType::class)
             ->add('journeyCost', IntegerType::class)
             ->add('toll', IntegerType::class)
             ->add('meal', IntegerType::class)
