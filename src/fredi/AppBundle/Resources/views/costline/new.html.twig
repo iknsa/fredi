@@ -1,5 +1,7 @@
 {% extends '::fredi/base.html.twig' %}
 
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
 {% block body %}
     <div class="page-header">
         <div class="page-title">
@@ -9,6 +11,6 @@
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Enregistrer" class="btn btn-success pull-left" />
+        <a href="{{ path('cost_index') }}" class="btn btn-info pull-left">Retour</a>
     {{ form_end(form) }}
-    <a href="{{ path('cost_index') }}" class="btn btn-info pull-left">Retour</a>
 {% endblock %}
