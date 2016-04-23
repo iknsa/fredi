@@ -19,7 +19,7 @@
         {% for cost in costs %}
             <tr>
                 <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ cost.reason }}</td>
+                <td>{{ cost.reason.name }}</td>
                 <td>{{ cost.total }}</td>
                 <td>
                     <ul>
