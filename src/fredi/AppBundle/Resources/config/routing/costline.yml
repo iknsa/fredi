@@ -13,6 +13,11 @@ costline_edit:
     defaults: { _controller: "frediAppBundle:CostLine:edit" }
     methods:  [GET, POST]
 
+costline_show:
+    path:     /{id}/show
+    defaults: { _controller: "frediAppBundle:CostLine:show" }
+    methods:  GET
+
 costline_delete:
     path:     /{id}/delete
     defaults: { _controller: "frediAppBundle:CostLine:delete" }
