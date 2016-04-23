@@ -3,12 +3,15 @@
 namespace fredi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Cost
  *
  * @ORM\Table(name="cost")
  * @ORM\Entity(repositoryClass="fredi\AppBundle\Repository\CostRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deleted_at", timeAware=false)
  */
 class Cost
 {
@@ -29,9 +32,7 @@ class Cost
     private $date;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="reason", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Reason")
      */
     private $reason;
 
@@ -108,21 +109,19 @@ class Cost
     /**
      * Set reason
      *
-     * @param string $reason
+     * @param \fredi\AppBundle\Entity\Reason $reason
      *
      * @return Cost
      */
-    public function setReason($reason)
+    public function setReason(\fredi\AppBundle\Entity\Reason $reason = null)
     {
         $this->reason = $reason;
-
         return $this;
     }
-
     /**
      * Get reason
      *
-     * @return string
+     * @return \fredi\AppBundle\Entity\Reason
      */
     public function getReason()
     {

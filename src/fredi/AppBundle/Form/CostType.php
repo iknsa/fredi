@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CostType extends AbstractType
 {
@@ -21,7 +22,7 @@ class CostType extends AbstractType
             ->add('date', DateType::class, array(
                 'placeholder' => array(
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
-            ->add('reason', TextType::class)
+            ->add('reason', EntityType::class, array('class' => 'frediAppBundle:Reason', 'choice_label' => 'name', 'label' => 'Motif'))
             ->add('journeyCost', IntegerType::class)
             ->add('toll', IntegerType::class)
             ->add('meal', IntegerType::class)
