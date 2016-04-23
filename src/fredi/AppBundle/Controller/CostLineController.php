@@ -50,7 +50,7 @@ class CostLineController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('costline_index', array('id' => $costLine->getCost()->getId()));
+            return $this->redirectToRoute('costline_show', array('id' => $costLine->getCost()->getId()));
         }
 
         return $this->render('frediAppBundle:costline:new.html.twig', array(
@@ -113,7 +113,7 @@ class CostLineController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('costline_index');
+        return $this->redirectToRoute('cost_index');
     }
 
     /**
