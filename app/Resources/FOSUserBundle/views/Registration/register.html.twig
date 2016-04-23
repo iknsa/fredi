@@ -1,5 +1,47 @@
 {% extends "::fredi/base.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block bodyClass %}
+    login
+{% endblock %}
+
 {% block fos_user_content %}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    <div class="container">
+        <div class="">
+            <h1 class="form-title">Enregistrer un compte</h1>
+        </div>
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-vertical login-form', 'novalidate' : 'novalidate'}}) }}
+        <div class="form-group">
+            <div class="input-icon">
+                <i class="icon-envelope"></i>
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email', 'autofocus': 'autofocus'}})}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-icon">
+                <i class="icon-user"></i>
+                {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Username'}})}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-icon">
+                {% if form_errors(form.plainPassword.first) %}
+                    {{form_errors(form.plainPassword.first)}}
+                {% endif %}
+                <i class="icon-lock"></i>
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Password'}})}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-icon">
+                <i class="icon-ok"></i>
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirm Password'}})}}
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" class="submit btn btn-primary pull-right"/>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock fos_user_content %}
