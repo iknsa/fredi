@@ -1,1 +1,71 @@
 {% extends '::fredi/base.html.twig' %}
+
+{% block body %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+{#         <div class="container">
+            <div class="row row-bg">
+                <div class="col-sm-6 col-md-3">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content">
+                            <div class="visual cyan">
+                                <i class="icon-home"></i>
+                            </div>
+                            <div class="title">{{ 'company.company'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content">
+                            <div class="visual green">
+                                <i class="icon-group"></i>
+                            </div>
+                            <div class="title">{{ 'client.client'|trans }}</div>
+                        </div>
+                    </div> <!-- /.smallstat -->
+                </div> <!-- /.col-md-3 -->
+
+                <div class="col-sm-6 col-md-3 hidden-xs">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content">
+                            <div class="visual red">
+                                <i class="icon-user"></i>
+                            </div>
+                            <div class="title">{{ 'dockbar.profil'|trans }}</div>
+                            <a class="more" href="{{ path("fos_user_profile_show") }}">{{ 'landing.seeProfil'|trans }} <i class="pull-right icon-angle-right"></i></a>
+                        </div>
+                    </div> <!-- /.smallstat -->
+                </div> <!-- /.col-md-3 -->
+                <div class="col-sm-6 col-md-3 hidden-xs">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content">
+                            <div class="visual yellow">
+                                <i class="icon-edit"></i>
+                            </div>
+                            <div class="title">{{ 'menu.invoice'|trans }}</div>
+                        </div>
+                    </div> <!-- /.smallstat -->
+                </div> <!-- /.col-md-3 -->
+            </div> <!-- /.row -->
+        </div> #}
+    {% else %}
+        <div class="page-header">
+            <div class="page-title">
+                <h3>BIenvenue sur le site de la M2L pour commencer à profiter de nos services veuillez-vous identifier.</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-bg">
+                <div class="col-sm-6 col-md-3">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content">
+                            <div class="visual cyan">
+                                <i class="icon-home"></i>
+                            </div>
+                            <a class="more" href="{{ path("fos_user_security_login") }}">LogIn <i class="pull-right icon-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+{% endblock body %}
