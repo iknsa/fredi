@@ -74,3 +74,12 @@ fos_user:
     user_class: fredi\AppBundle\Entity\User
     group:
         group_class: fredi\AppBundle\Entity\Groups
+
+# https://github.com/stof/StofDoctrineExtensionsBundle
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+            timestampable: true
+            softdeleteable: true
+            uploadable: true
