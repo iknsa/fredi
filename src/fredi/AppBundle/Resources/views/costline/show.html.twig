@@ -26,10 +26,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('cost_index') }}">Back to the list</a>
+            <a href="{{ path('costline_index', { 'associationUniqueId': associationUniqueId }) }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('costline_edit', { 'id': costLine.id }) }}">Edit</a>
+            <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
