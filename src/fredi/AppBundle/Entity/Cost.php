@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="cost")
  * @ORM\Entity(repositoryClass="fredi\AppBundle\Repository\CostRepository")
- * @Gedmo\SoftDeleteable(fieldName="deleted_at", timeAware=false)
  */
 class Cost
 {
@@ -70,7 +69,6 @@ class Cost
      * @ORM\Column(name="total", type="integer", nullable=true)
      */
     private $total;
-
 
     /**
      * Get id

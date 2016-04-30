@@ -61,6 +61,11 @@ class CostLine
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Association")
+     */
+    private $association;
+
+    /**
      * Set cityStart
      *
      * @param string $cityStart
@@ -152,5 +157,28 @@ class CostLine
     public function getCost()
     {
         return $this->cost;
+    }
+
+    /**
+     * Set association
+     *
+     * @param \fredi\AppBundle\Entity\Association $association
+     *
+     * @return AssociationUser
+     */
+    public function setAssociation(\fredi\AppBundle\Entity\Association $association = null)
+    {
+        $this->association = $association;
+        return $this;
+    }
+
+    /**
+     * Get association
+     *
+     * @return \fredi\AppBundle\Entity\Association
+     */
+    public function getAssociation()
+    {
+        return $this->association;
     }
 }
