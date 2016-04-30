@@ -4,7 +4,11 @@ fredi_app_cost:
 
 fredi_app_costline:
     resource: "@frediAppBundle/Resources/config/routing/costline.yml"
-    prefix:   /costline
+    prefix:   /{associationUniqueId}/costline
+
+fredi_app_association:
+        resource: "@frediAppBundle/Resources/config/routing/association.yml"
+        prefix:   /association
 
 fredi_app_homepage:
     path:     /
