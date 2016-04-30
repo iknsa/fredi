@@ -1,0 +1,29 @@
+association_index:
+    path:     /
+    defaults: { _controller: "frediAppBundle:Association:index" }
+    methods:  GET
+
+association_show:
+    path:     /{id}/show
+    defaults: { _controller: "frediAppBundle:Association:show" }
+    methods:  GET
+
+association_new:
+    path:     /new
+    defaults: { _controller: "frediAppBundle:Association:new" }
+    methods:  [GET, POST]
+
+association_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "frediAppBundle:Association:edit" }
+    methods:  [GET, POST]
+
+association_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "frediAppBundle:Association:delete" }
+    methods:  DELETE
+
+fredi_association_select:
+    path:     /select/{associationUniqueId}/{id}
+    defaults: { _controller: "frediAppBundle:Association:select", id: null }
+    methods:  GET
