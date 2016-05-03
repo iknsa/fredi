@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use fredi\AppBundle\Entity\CostLine;
 use fredi\AppBundle\Form\CostTypeLine;
 use fredi\AppBundle\Entity\CostUser;
+use fredi\AppBundle\Traits\GetCostsTrait;
 
 /**
  * Cost controller.
@@ -15,6 +16,8 @@ use fredi\AppBundle\Entity\CostUser;
  */
 class CostController extends Controller
 {
+    use GetCostsTrait;
+
     /**
      * Lists all Cost entities.
      *
@@ -53,29 +56,5 @@ class CostController extends Controller
             'costline' => $costline[0]
         ));
 
-    }
-
-    /**
-     * Method to retrieve all costs of a user
-     * @return array Costs
-     */
-    private function getCosts()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $costsArray = [];
-
-        if($this->getUser()) {
-            $users = $em->getRepository('frediAppBundle:User')->findBy(array('id' => $this->getUser()->getId()));
-            $user = $users[0];
-
-            $costs = $em->getRepository('frediAppBundle:CostUser')->findByUser($user);
-
-            foreach ($costs as $cost) {
-                $costsArray[] = $cost->getCost();
-            }
-        }
-
-        return $costsArray;
     }
 }

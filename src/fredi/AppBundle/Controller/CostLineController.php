@@ -11,6 +11,7 @@ use fredi\AppBundle\Entity\CostUser;
 use fredi\AppBundle\Controller\AssociationController;
 use Symfony\Component\HttpFoundation\Session\Session;
 use fredi\AppBundle\Traits\GetAssociationsTrait;
+use fredi\AppBundle\Traits\GetCostsTrait;
 
 /**
  * CostLine controller.
@@ -19,6 +20,8 @@ use fredi\AppBundle\Traits\GetAssociationsTrait;
 class CostLineController extends Controller
 {
     use GetAssociationsTrait;
+    use GetCostsTrait;
+
 
     /**
      * Lists all CostLine entities.
@@ -37,9 +40,12 @@ class CostLineController extends Controller
             ));
         }
 
-        $costLines = $em->getRepository('frediAppBundle:CostLine')->findAll();
+        $association = $em->getRepository('frediAppBundle:Association')->findByUniqueId($associationUniqueId);
+        $costs = $em->getRepository('frediAppBundle:CostLine')->findByAssociation($association);
+
         return $this->render('frediAppBundle:costline:index.html.twig', array(
-            'costLines' => $costLines, 'associationUniqueId' => $associationUniqueId,
+            'costs' => $costs,
+            'associationUniqueId' => $associationUniqueId,
         ));
     }
 
@@ -117,7 +123,7 @@ class CostLineController extends Controller
     {
         $associations = $this->getAssociations();
 
-        if(!in_array($costLine->getCompany(), $associations)) {
+        if(!in_array($costLine->getAssociation(), $associations)) {
             throw $this->createNotFoundException("We can't find this user");
         }
 

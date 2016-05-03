@@ -25,7 +25,7 @@ class LoadAssociationUser extends AbstractFixture implements OrderedFixtureInter
 
         $associationUser3 = new AssociationUser;
         $associationUser3->setAssociation($this->getReference('association-3'));
-        $associationUser3->setUser($this->getReference('admin-admin'));
+        $associationUser3->setUser($this->getReference('member-member'));
         $manager->persist($associationUser3);
 
         $manager->flush();

@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for costLine in costLines %}
+        {% for costLine in costs %}
             <tr>
                 <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ costLine.cityStart }}</td>
@@ -38,7 +38,7 @@
                 <td>
                     <ul>
                         <li style="list-style-type:none;">
-                            <a href="{{ path('costline_edit', { 'id': costLine.id }) }}" class="btn bnt-primary">edit</a>
+                            <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -48,8 +48,8 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('costline_new') }}">Create a new entry</a>
+        <li style="list-style-type:none;">
+            <a href="{{ path('costline_new', {'associationUniqueId': associationUniqueId}) }}" class="btn btn-success">Nouvelle ligne</a>
         </li>
     </ul>
 {% endblock %}
