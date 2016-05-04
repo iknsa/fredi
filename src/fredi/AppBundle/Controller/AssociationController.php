@@ -148,4 +148,11 @@ class AssociationController extends Controller
         }
         return $this->redirect($this->generateUrl($session->get('last_route')['name'], array('id' => $id, 'associationUniqueId' => $associationUniqueId)) );
     }
+
+    public function unsetAssociationFromSessionAction()
+    {
+        $session = new Session;
+        $session->set('association', null);
+        return $this->redirect($this->generateUrl('fredi_app_homepage'));
+    }
 }

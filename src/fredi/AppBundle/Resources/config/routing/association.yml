@@ -27,3 +27,8 @@ fredi_association_select:
     path:     /select/{associationUniqueId}/{id}
     defaults: { _controller: "frediAppBundle:Association:select", id: null }
     methods:  GET
+
+fredi_association_unset:
+    path:     /unset/
+    defaults: { _controller: "frediAppBundle:Association:unsetAssociationFromSession" }
+    methods:  GET
