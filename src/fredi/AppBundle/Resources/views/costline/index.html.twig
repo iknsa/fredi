@@ -3,7 +3,7 @@
 {% block body %}
     <div class="page-header">
         <div class="page-title">
-            <h3>Bordereau</h3>
+            <h3>Bordereau pour l'association</h3>
         </div>
     </div>
     <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
@@ -50,6 +50,9 @@
     <ul>
         <li style="list-style-type:none;">
             <a href="{{ path('costline_new', {'associationUniqueId': associationUniqueId}) }}" class="btn btn-success">Nouvelle ligne</a>
+        </li>
+        <li style="list-style-type:none;">
+             <a href="{{ path('costline_pdf', {'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary btn-lg">Créer le  PDF</a>
         </li>
     </ul>
 {% endblock %}

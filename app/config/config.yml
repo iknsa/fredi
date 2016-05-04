@@ -75,6 +75,18 @@ fos_user:
     group:
         group_class: fredi\AppBundle\Entity\Groups
 
+# https://github.com/KnpLabs/KnpSnappyBundle
+knp_snappy:
+    temporary_folder: %kernel.cache_dir%/snappy
+    pdf:
+        enabled:    true
+        binary:     "%kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64"
+        options:    []
+    image:
+        enabled:    true
+        binary:     "%kernel.root_dir%/../vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64"
+        options:    []
+
 # https://github.com/stof/StofDoctrineExtensionsBundle
 stof_doctrine_extensions:
     orm:

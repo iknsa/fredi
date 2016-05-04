@@ -22,3 +22,8 @@ costline_delete:
     path:     /{id}/delete
     defaults: { _controller: "frediAppBundle:CostLine:delete" }
     methods:  DELETE
+
+costline_pdf:
+    path:     /pdf
+    defaults: { _controller: "frediAppBundle:CostLine:pdf" }
+    methods: GET
