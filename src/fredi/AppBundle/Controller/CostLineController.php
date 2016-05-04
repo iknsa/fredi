@@ -12,6 +12,10 @@ use fredi\AppBundle\Controller\AssociationController;
 use Symfony\Component\HttpFoundation\Session\Session;
 use fredi\AppBundle\Traits\GetAssociationsTrait;
 use fredi\AppBundle\Traits\GetCostsTrait;
+use fredi\AppBundle\Entity\Cost;
+use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * CostLine controller.
@@ -68,7 +72,7 @@ class CostLineController extends Controller
             $associations = $this->getAssociations();
 
             if($associations === []) {
-                $this->addFlash('notice', 'You must create a association first to add clients to it');
+                $this->addFlash('notice', 'You must create a association first to add cost to it');
                 return $this->redirectToRoute('fredi_association_new');
             }
             return $this->render('frediAppBundle:association:select.html.twig', array(
@@ -185,5 +189,41 @@ class CostLineController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function pdfAction(Request $request, $associationUniqueId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $session = new Session;
+
+        if($session->get('association') === null || $session->get('association') === '') {
+            $associations = $this->getAssociations();
+            return $this->render('frediAppBundle:association:select.html.twig', array(
+                'associations' => $associations
+            ));
+        }
+
+        $association = $em->getRepository('frediAppBundle:Association')->findByUniqueId($associationUniqueId);
+
+        $costs = $em->getRepository('frediAppBundle:CostLine')->findByAssociation($association);
+
+        $html = $this->renderView(
+            'frediAppBundle:costline:index.html.twig', array(
+                'costs' => $costs,
+                'associationUniqueId' => $associationUniqueId,
+            ));
+        if(file_exists($this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf")) {
+            unlink($this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf");
+        }
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView(
+                'frediAppBundle:costline:index.html.twig', array(
+                    'costs' => $costs,
+                    'associationUniqueId' => $associationUniqueId,
+            )),
+            $read = $this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf"
+        );
+        return new BinaryFileResponse("$read");
     }
 }
