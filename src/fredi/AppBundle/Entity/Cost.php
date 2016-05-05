@@ -36,41 +36,6 @@ class Cost
     private $reason;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="journeyCost", type="integer", nullable=true)
-     */
-    private $journeyCost;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="toll", type="integer", nullable=true)
-     */
-    private $toll;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="meal", type="integer", nullable=true)
-     */
-    private $meal;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="accommodation", type="integer", nullable=true)
-     */
-    private $accommodation;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="total", type="integer", nullable=true)
-     */
-    private $total;
-
-    /**
      * Get id
      *
      * @return int
@@ -116,6 +81,7 @@ class Cost
         $this->reason = $reason;
         return $this;
     }
+
     /**
      * Get reason
      *
@@ -126,123 +92,4 @@ class Cost
         return $this->reason;
     }
 
-    /**
-     * Set journeyCost
-     *
-     * @param integer $journeyCost
-     *
-     * @return Cost
-     */
-    public function setJourneyCost($journeyCost)
-    {
-        $this->journeyCost = $journeyCost;
-
-        return $this;
-    }
-
-    /**
-     * Get journeyCost
-     *
-     * @return int
-     */
-    public function getJourneyCost()
-    {
-        return $this->journeyCost;
-    }
-
-    /**
-     * Set toll
-     *
-     * @param integer $toll
-     *
-     * @return Cost
-     */
-    public function setToll($toll)
-    {
-        $this->toll = $toll;
-
-        return $this;
-    }
-
-    /**
-     * Get toll
-     *
-     * @return int
-     */
-    public function getToll()
-    {
-        return $this->toll;
-    }
-
-    /**
-     * Set meal
-     *
-     * @param integer $meal
-     *
-     * @return Cost
-     */
-    public function setMeal($meal)
-    {
-        $this->meal = $meal;
-
-        return $this;
-    }
-
-    /**
-     * Get meal
-     *
-     * @return int
-     */
-    public function getMeal()
-    {
-        return $this->meal;
-    }
-
-    /**
-     * Set accommodation
-     *
-     * @param integer $accommodation
-     *
-     * @return Cost
-     */
-    public function setAccommodation($accommodation)
-    {
-        $this->accommodation = $accommodation;
-
-        return $this;
-    }
-
-    /**
-     * Get accommodation
-     *
-     * @return int
-     */
-    public function getAccommodation()
-    {
-        return $this->accommodation;
-    }
-
-    /**
-     * Set total
-     *
-     * @param integer $total
-     *
-     * @return Cost
-     */
-    public function setTotal($total)
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    /**
-     * Get total
-     *
-     * @return int
-     */
-    public function getTotal()
-    {
-        return $this->total;
-    }
 }

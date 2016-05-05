@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Modifier la note de frais</h1>
 
-    <a href="{{ path('cost_index') }}" class="btn btn-primary pull-right">Retour</a>
+    <a href="{{ path('costline_index', { 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary pull-right">Retour</a>
     {{ form_start(delete_form) }}
         <input type="submit" value="Supprimer" class="btn btn-danger pull-right">
     {{ form_end(delete_form) }}

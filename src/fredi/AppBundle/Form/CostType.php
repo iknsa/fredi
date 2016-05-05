@@ -23,11 +23,6 @@ class CostType extends AbstractType
                 'placeholder' => array(
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
             ->add('reason', EntityType::class, array('class' => 'frediAppBundle:Reason', 'choice_label' => 'name', 'label' => 'Motif'))
-            ->add('journeyCost', IntegerType::class)
-            ->add('toll', IntegerType::class)
-            ->add('meal', IntegerType::class)
-            ->add('accommodation', IntegerType::class)
-            ->add('total', IntegerType::class)
         ;
     }
     
