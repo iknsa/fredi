@@ -46,10 +46,15 @@ class CostLineController extends Controller
 
         $association = $em->getRepository('frediAppBundle:Association')->findByUniqueId($associationUniqueId);
         $costs = $em->getRepository('frediAppBundle:CostLine')->findByAssociation($association);
+        $final = 0;
+        foreach ($costs as $key => $value) {
+            $final += $value->getTotal();
+        }
 
         return $this->render('frediAppBundle:costline:index.html.twig', array(
             'costs' => $costs,
             'associationUniqueId' => $associationUniqueId,
+            'final' => $final,
         ));
     }
 
@@ -84,6 +89,12 @@ class CostLineController extends Controller
 
             $association = $em->getRepository('frediAppBundle:Association')->findByUniqueId($associationUniqueId);
             $costLine->setAssociation($association[0]);
+
+            $journey = ($costLine->getDistance() * 0.28);
+            $total = $costLine->getToll() + $costLine->getMeal() + $costLine->getAccommodation() +$journey ;
+
+            $costLine->setJourneyCost($journey);
+            $costLine->setTotal($total);
             $user->setCost($costLine->getCost());
             $user->setUser($this->getUser());
             $em->persist($costLine);
@@ -137,6 +148,11 @@ class CostLineController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $journey = ($costLine->getDistance() * 0.28);
+            $total = $costLine->getToll() + $costLine->getMeal() + $costLine->getAccommodation() +$journey ;
+
+            $costLine->setJourneyCost($journey);
+            $costLine->setTotal($total);
             $em->persist($costLine);
             $em->flush();
             return $this->redirectToRoute('costline_edit', array('id' => $costLine->getId(), 'associationUniqueId' => $associationUniqueId));
@@ -169,7 +185,7 @@ class CostLineController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($client);
+            $em->remove($costLine);
             $em->flush();
         }
         return $this->redirectToRoute('costline_index', array('associationUniqueId' => $associationUniqueId));
@@ -207,20 +223,26 @@ class CostLineController extends Controller
         $association = $em->getRepository('frediAppBundle:Association')->findByUniqueId($associationUniqueId);
 
         $costs = $em->getRepository('frediAppBundle:CostLine')->findByAssociation($association);
+        $final = 0;
+        foreach ($costs as $key => $value) {
+            $final += $value->getTotal();
+        }
 
         $html = $this->renderView(
-            'frediAppBundle:costline:index.html.twig', array(
+            'frediAppBundle:costline:viewPDF.html.twig', array(
                 'costs' => $costs,
                 'associationUniqueId' => $associationUniqueId,
+                'final' => $final,
             ));
         if(file_exists($this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf")) {
             unlink($this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf");
         }
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView(
-                'frediAppBundle:costline:index.html.twig', array(
+                'frediAppBundle:costline:viewPDF.html.twig', array(
                     'costs' => $costs,
                     'associationUniqueId' => $associationUniqueId,
+                    'final' => $final,
             )),
             $read = $this->get('kernel')->getRootDir() . "/../web/docs/$associationUniqueId.pdf"
         );

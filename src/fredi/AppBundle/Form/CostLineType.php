@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\FloatType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use fredi\AppBundle\Form\CostType;
@@ -20,10 +20,13 @@ class CostLineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('cost', CostType::class, array('required' => false, 'label' => false))
             ->add('cityStart', TextType::class)
             ->add('cityEnd', TextType::class)
-            ->add('distance', IntegerType::class)
-            ->add('cost', CostType::class, array('required' => false, 'label' => false))
+            ->add('distance', TextType::class)
+            ->add('toll', TextType::class)
+            ->add('meal', TextType::class)
+            ->add('accommodation', TextType::class)
         ;
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {

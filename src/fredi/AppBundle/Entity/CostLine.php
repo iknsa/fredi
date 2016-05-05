@@ -39,11 +39,46 @@ class CostLine
     private $cityEnd;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="distance", type="integer", nullable=true)
+     * @ORM\Column(name="distance", type="float", nullable=true)
      */
     private $distance;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="journeyCost", type="float", nullable=true)
+     */
+    private $journeyCost;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="toll", type="float", nullable=true)
+     */
+    private $toll;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="meal", type="float", nullable=true)
+     */
+    private $meal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="accommodation", type="float", nullable=true)
+     */
+    private $accommodation;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total", type="float", nullable=true)
+     */
+    private $total;
 
     /**
      * @ORM\OneToOne(targetEntity="fredi\AppBundle\Entity\Cost",cascade={"persist"})
@@ -135,6 +170,126 @@ class CostLine
     public function getDistance()
     {
         return $this->distance;
+    }
+
+    /**
+     * Set journeyCost
+     *
+     * @param float $journeyCost
+     *
+     * @return CostLine
+     */
+    public function setJourneyCost($journeyCost)
+    {
+        $this->journeyCost = $journeyCost;
+
+        return $this;
+    }
+
+    /**
+     * Get journeyCost
+     *
+     * @return float
+     */
+    public function getJourneyCost()
+    {
+        return $this->journeyCost;
+    }
+
+    /**
+     * Set toll
+     *
+     * @param float $toll
+     *
+     * @return CostLine
+     */
+    public function setToll($toll)
+    {
+        $this->toll = $toll;
+
+        return $this;
+    }
+
+    /**
+     * Get toll
+     *
+     * @return float
+     */
+    public function getToll()
+    {
+        return $this->toll;
+    }
+
+    /**
+     * Set meal
+     *
+     * @param float $meal
+     *
+     * @return CostLine
+     */
+    public function setMeal($meal)
+    {
+        $this->meal = $meal;
+
+        return $this;
+    }
+
+    /**
+     * Get meal
+     *
+     * @return float
+     */
+    public function getMeal()
+    {
+        return $this->meal;
+    }
+
+    /**
+     * Set accommodation
+     *
+     * @param float $accommodation
+     *
+     * @return CostLine
+     */
+    public function setAccommodation($accommodation)
+    {
+        $this->accommodation = $accommodation;
+
+        return $this;
+    }
+
+    /**
+     * Get accommodation
+     *
+     * @return float
+     */
+    public function getAccommodation()
+    {
+        return $this->accommodation;
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     *
+     * @return CostLine
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->total;
     }
 
     /**

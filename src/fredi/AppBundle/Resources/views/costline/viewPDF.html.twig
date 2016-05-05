@@ -1,0 +1,75 @@
+{% block body %}
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ absolute_url(asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css')) }}">
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Note de frais des bénévoles de l'association {%  if costs[0] is defined %}{{ costs[0].association.name }}{% endif %}</h3>
+        </div>
+    </div>
+    <div>
+        <p>
+            je soussigné(é) {{ app.user.username|upper}}
+        </p>
+    </div>
+    <div>
+        <p>
+            Certifie renoncer au remboursement des frais çi-dessous et les laisser à l'association
+        </p>
+        <p>
+            {%  if costs[0] is defined %}{{ costs[0].association.name ~ ", " ~ costs[0].association.address ~ " - " ~ costs[0].association.postalCode ~ " " ~ costs[0].association.city }}{% endif %}
+        </p>
+        <p>
+            <strong>Frais de remboursement</strong> Tarif kilométrique en vigueur 0.28€
+        </p>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
+        <thead>
+            <tr class="info">
+                <th>Date</th>
+                <th>Motif</th>
+                <th>Ville de départ</th>
+                <th>Ville d'arrivée</th>
+                <th>Distance</th>
+                <th>Prix du voyage</th>
+                <th>Péage</th>
+                <th>Repas</th>
+                <th>Hébergement</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for costLine in costs %}
+            <tr>
+                <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ costLine.cost.reason.name }}</td>
+                <td>{{ costLine.cityStart }}</td>
+                <td>{{ costLine.cityEnd }}</td>
+                <td>{{ costLine.distance }}</td>
+                <td>{{ costLine.journeyCost }}</td>
+                <td>{{ costLine.toll }}</td>
+                <td>{{ costLine.meal }}</td>
+                <td>{{ costLine.accommodation }}</td>
+                <td>{{ costLine.total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <p>
+            le montant total des dons est de <strong>{{ final }}</strong> €.
+        </p>
+        <p>
+            <strong>Note : </strong>pour bénéficier du reçu de dons, cette note de frais doit être accompagnée de tout les justificatifs correspondant
+        </p>
+        <p>
+            A : 
+        </p>
+        <p>
+            Le :
+        </p>
+        <p>
+            Signature du bénévole : 
+        </p>
+    </div>
+
+{% endblock %}

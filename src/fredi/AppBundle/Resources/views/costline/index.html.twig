@@ -3,17 +3,17 @@
 {% block body %}
     <div class="page-header">
         <div class="page-title">
-            <h3>Bordereau pour l'association</h3>
+            <h3>Bordereau pour l'association {%  if costs[0] is defined %}{{ costs[0].association.name }}{% endif %}</h3>
         </div>
     </div>
     <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
         <thead>
             <tr class="info">
                 <th>Date</th>
+                <th>Motif</th>
                 <th>Ville de départ</th>
                 <th>Ville d'arrivée</th>
                 <th>Distance</th>
-                <th>Motif</th>
                 <th>Prix du voyage</th>
                 <th>Péage</th>
                 <th>Repas</th>
@@ -26,15 +26,15 @@
         {% for costLine in costs %}
             <tr>
                 <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ costLine.cost.reason.name }}</td>
                 <td>{{ costLine.cityStart }}</td>
                 <td>{{ costLine.cityEnd }}</td>
                 <td>{{ costLine.distance }}</td>
-                <td>{{ costLine.cost.reason.name }}</td>
-                <td>{{ costLine.cost.journeyCost }}</td>
-                <td>{{ costLine.cost.toll }}</td>
-                <td>{{ costLine.cost.meal }}</td>
-                <td>{{ costLine.cost.accommodation }}</td>
-                <td>{{ costLine.cost.total }}</td>
+                <td>{{ costLine.journeyCost }}</td>
+                <td>{{ costLine.toll }}</td>
+                <td>{{ costLine.meal }}</td>
+                <td>{{ costLine.accommodation }}</td>
+                <td>{{ costLine.total }}</td>
                 <td>
                     <ul>
                         <li style="list-style-type:none;">
