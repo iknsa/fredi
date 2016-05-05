@@ -57,9 +57,15 @@ class Association
     */
     private $uniqueId;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AssociationUser", mappedBy="association")
+     */
+    protected $associationUsers;
+
     public function __construct()
     {
         $this->setuniqueId(uniqid());
+        $this->associationUsers = new ArrayCollection();
     }
 
     /**
@@ -188,5 +194,28 @@ class Association
     public function getUniqueId()
     {
         return $this->uniqueId;
+    }
+
+    /**
+     * Set associationUser
+     *
+     * @param \fredi\AppBundle\Entity\AssociationUser $associationUsers
+     *
+     * @return Association
+     */
+    public function setAssociationUser(\fredi\AppBundle\Entity\AssociationUser $associationUsers = null)
+    {
+        $this->associationUsers = $associationUsers;
+        return $this;
+    }
+
+    /**
+     * Get associationUser
+     *
+     * @return \fredi\AppBundle\Entity\AssociationUser
+     */
+    public function getAssociationUser()
+    {
+        return $this->associationUsers;
     }
 }

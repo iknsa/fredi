@@ -4,6 +4,7 @@ namespace fredi\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -24,7 +25,8 @@ class AssociationUser
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Association")
+     * @ORM\ManyToOne(targetEntity="Association", inversedBy="associationUsers")
+     * @ORM\JoinColumn(name="association_id", referencedColumnName="id")
      */
     protected $association;
 
