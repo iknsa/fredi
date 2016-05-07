@@ -39,6 +39,7 @@
                     <ul>
                         <li style="list-style-type:none;">
                             <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('costline_show', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}" class="btn btn-info">Aperçu</a>
                         </li>
                     </ul>
                 </td>
@@ -52,7 +53,7 @@
             <a href="{{ path('costline_new', {'associationUniqueId': associationUniqueId}) }}" class="btn btn-success">Nouvelle ligne</a>
         </li>
         <li style="list-style-type:none;">
-             <a href="{{ path('costline_pdf', {'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary btn-lg">Créer le  PDF</a>
+             <a href="{{ path('costline_pdf', {'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary">Créer le  PDF</a>
         </li>
     </ul>
 {% endblock %}

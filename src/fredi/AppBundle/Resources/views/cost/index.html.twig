@@ -11,20 +11,37 @@
             <tr class="info">
                 <th>Date</th>
                 <th>Motif</th>
+                <th>Ville de départ</th>
+                <th>Ville d'arrivée</th>
+                <th>Distance</th>
+                <th>Prix du voyage</th>
+                <th>Péage</th>
+                <th>Repas</th>
+                <th>Hébergement</th>
                 <th>Total</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for cost in costs %}
+        {% for costLine in costs %}
             <tr>
-                <td>{% if cost.date %}{{ cost.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ cost.reason.name }}</td>
-                <td>{{ cost.total }}</td>
+                <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ costLine.cost.reason.name }}</td>
+                <td>{{ costLine.cityStart }}</td>
+                <td>{{ costLine.cityEnd }}</td>
+                <td>{{ costLine.distance }}</td>
+                <td>{{ costLine.journeyCost }}</td>
+                <td>{{ costLine.toll }}</td>
+                <td>{{ costLine.meal }}</td>
+                <td>{{ costLine.accommodation }}</td>
+                <td>{{ costLine.total }}</td>
                 <td>
                     <ul>
                         <li style="list-style-type:none;">
-                            <a href="{{ path('cost_show', { 'id': cost.id }) }}" class="btn btn-primary">Aperçu</a>
+                            <a href="{{ path('cost_show', { 'id': costLine.id }) }}" class="btn btn-primary">Aperçu</a>
+                        </li>
+                        <li>
+                        <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary pull-left">Modifier</a>        
                         </li>
                     </ul>
                 </td>

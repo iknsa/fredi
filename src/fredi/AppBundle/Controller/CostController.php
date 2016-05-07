@@ -22,12 +22,15 @@ class CostController extends Controller
      * Lists all Cost entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request, $associationUniqueId)
     {
-        $costs = $this->getCosts();
+        $em = $this->getDoctrine()->getManager();
+
+        $costs = $em->getRepository('frediAppBundle:CostLine')->findAll();
 
         return $this->render('frediAppBundle:cost:index.html.twig', array(
             'costs' => $costs,
+            'associationUniqueId' => $associationUniqueId,
         ));
     }
 

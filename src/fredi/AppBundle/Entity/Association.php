@@ -61,11 +61,20 @@ class Association
      * @ORM\OneToMany(targetEntity="AssociationUser", mappedBy="association")
      */
     protected $associationUsers;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Member", inversedBy="associations")
+     * @ORM\JoinTable(name="association_member",
+     *      joinColumns={@ORM\JoinColumn(name="association_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="member_id", referencedColumnName="id")}
+     *      )
+     **/
+    protected $members;
 
     public function __construct()
     {
         $this->setuniqueId(uniqid());
-        $this->associationUsers = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     /**
@@ -217,5 +226,53 @@ class Association
     public function getAssociationUser()
     {
         return $this->associationUsers;
+    }
+
+    /**
+     * Set member
+     *
+     * @param \fredi\AppBundle\Entity\Member $member
+     *
+     * @return Association
+     */
+    public function setMember(\fredi\AppBundle\Entity\Member $member = null)
+    {
+        $this->member = $member;
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return \fredi\AppBundle\Entity\Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * Add members
+     *
+     * @param \fredi\AppBundle\Entity\Member $members
+     * @return Association
+     */
+    public function addMember(\fredi\AppBundle\Entity\Member $members)
+    {
+        $this->members[] = $members;
+        $members->addAssociation($this);
+
+        return $this;
+    }
+
+    public function removeMember(\fredi\AppBundle\Entity\Member $member)
+    {
+        $this->members->removeElement($member);
+    }
+
+
+    public function getMembers()
+    {
+        return $this->members;
     }
 }

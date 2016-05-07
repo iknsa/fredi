@@ -5,9 +5,9 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN                 : ROLE_ADMIN
         ROLE_MEMBER                : ROLE_MEMBER
-        ROLE_TREASURER             : TREASURER
+        ROLE_TREASURER             : ROLE_TREASURER
+        ROLE_ADMIN                 : [ROLE_MEMBER, ROLE_TREASURER, ROLE_ADMIN]
 
     providers:
         fos_userbundle:
