@@ -10,50 +10,50 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ costline.cost.id }}</td>
+                <td>{{ costLine.cost.id }}</td>
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if costline.cost.date %}{{ costline.cost.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Ville de Départ</th>
-                <td>{{ costline.cityStart }}</td>
+                <td>{{ costLine.cityStart }}</td>
             </tr>
             <tr>
                 <th>Ville d'arrivée</th>
-                <td>{{ costline.cityEnd }}</td>
+                <td>{{ costLine.cityEnd }}</td>
             </tr>
             <tr>
                 <th>Distance</th>
-                <td>{{ costline.distance }}</td>
+                <td>{{ costLine.distance }}</td>
             </tr>
             <tr>
                 <th>Motif</th>
-                <td>{{ costline.cost.reason.name }}</td>
+                <td>{{ costLine.cost.reason.name }}</td>
             </tr>
             <tr>
                 <th>Prix du voyage</th>
-                <td>{{ costline.journeyCost }}</td>
+                <td>{{ costLine.journeyCost }}</td>
             </tr>
             <tr>
                 <th>Péage</th>
-                <td>{{ costline.toll }}</td>
+                <td>{{ costLine.toll }}</td>
             </tr>
             <tr>
                 <th>Repas</th>
-                <td>{{ costline.meal }}</td>
+                <td>{{ costLine.meal }}</td>
             </tr>
             <tr>
                 <th>Hébergement</th>
-                <td>{{ costline.accommodation }}</td>
+                <td>{{ costLine.accommodation }}</td>
             </tr>
             <tr>
                 <th>Total</th>
-                <td>{{ costline.total }}</td>
+                <td>{{ costLine.total }}</td>
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('cost_index') }}" class="btn btn-success pull-left">Retour</a>
-    <a href="{{ path('cost_edit', { 'id': costline.id }) }}" class="btn btn-primary pull-left">Modifier</a>
+    <a href="{{ path('cost_index', { 'associationUniqueId': associationUniqueId }) }}" class="btn btn-success pull-left">Retour</a>
+    <a href="{{ path('cost_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary pull-left">Modifier</a>
 {% endblock %}

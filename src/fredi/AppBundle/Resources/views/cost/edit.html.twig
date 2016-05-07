@@ -1,21 +1,17 @@
 {% extends '::fredi/base.html.twig' %}
 
-{% block body %}
-    <h1>Cost edit</h1>
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 
+{% block body %}
+    <h1>Modifier la note de frais</h1>
+
+    <a href="{{ path('cost_index', { 'associationUniqueId': associationUniqueId }) }}" class="btn btn-primary pull-right">Retour</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Supprimer" class="btn btn-danger pull-right">
+    {{ form_end(delete_form) }}
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Valider" class="btn btn-info" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('cost_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

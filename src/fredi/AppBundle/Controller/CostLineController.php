@@ -16,6 +16,9 @@ use fredi\AppBundle\Entity\Cost;
 use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 
 /**
  * CostLine controller.
@@ -83,6 +86,10 @@ class CostLineController extends Controller
             return $this->render('frediAppBundle:association:select.html.twig', array(
                 'associations' => $associations
             ));
+        }
+
+        if ($this->isGranted('ROLE_MEMBER')) {
+            $form->remove('isvalid');
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

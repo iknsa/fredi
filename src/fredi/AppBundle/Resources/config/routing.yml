@@ -1,6 +1,6 @@
 fredi_app_cost:
     resource: "@frediAppBundle/Resources/config/routing/cost.yml"
-    prefix:   /cost
+    prefix:   /{associationUniqueId}/cost
 
 fredi_app_costline:
     resource: "@frediAppBundle/Resources/config/routing/costline.yml"

@@ -1,0 +1,44 @@
+{% extends '::fredi/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <!--=== Big Buttons ===-->
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i>Sélectionnez votre association</h4>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row">
+                            {{dump(associations)}}
+                            {% for association in associations %}
+                                <div class="col-md-3">
+                                    {% if id is not defined %}
+                                        <a href="{{ path('fredi_association_selectT', {'associationUniqueId': association.uniqueId}) }}" class="btn btn-icon input-block-level">
+                                            <i class="icon-home"></i>
+                                            <div>{{ association.name }}</div>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('fredi_association_selectT', {'associationUniqueId': association.uniqueId, 'id': id}) }}" class="btn btn-icon input-block-level">
+                                            <i class="icon-home"></i>
+                                            <div>{{ association.name }}</div>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+
+                            {% for flash in app.session.flashbag.get('notice') %}
+                                <div class="flash-notice">
+                                    {{ flash }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Big Buttons -->
+        </div>
+    </div>
+{% endblock %}

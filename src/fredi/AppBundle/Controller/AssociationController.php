@@ -9,6 +9,7 @@ use fredi\AppBundle\Form\AssociationType;
 use fredi\AppBundle\Traits\GetAssociationsTrait;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Process\Exception\LogicException;
+use fredi\AppBundle\Traits\GetTreasurerAssociationsTrait;
 
 /**
  * Association controller.
@@ -17,6 +18,7 @@ use Symfony\Component\Process\Exception\LogicException;
 class AssociationController extends Controller
 {
     use GetAssociationsTrait;
+    use GetTreasurerAssociationsTrait;
 
     /**
      * Lists all Association entities.
@@ -154,5 +156,24 @@ class AssociationController extends Controller
         $session = new Session;
         $session->set('association', null);
         return $this->redirect($this->generateUrl('fredi_app_homepage'));
+    }
+
+    public function selectTAction(Request $request, $associationUniqueId, $id=null)
+    {
+        $session = new Session;
+
+        $session->set('association', '');
+
+        $association = $this->getTAssociations();
+
+        foreach ($association as $key => $value) {
+            if($value->getUniqueId() === $associationUniqueId) {
+                $session->set('association', $value);
+            }
+        }
+        if($session->get('association') === '') {
+            throw new LogicException("We were unable to load your association. Make sure you have the proper rights or contact your admin");
+        }
+        return $this->redirect($this->generateUrl($session->get('last_route')['name'], array('id' => $id, 'associationUniqueId' => $associationUniqueId)) );
     }
 }

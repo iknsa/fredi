@@ -94,6 +94,12 @@ class CostLine
      * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Member")
      */
     private $member;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isvalid", type="boolean", nullable=true)
+      */
+    private $isValid ;
 
     /**
      * Get id
@@ -340,5 +346,27 @@ class CostLine
     public function getAssociation()
     {
         return $this->association;
+    }
+
+    /**
+     * Set isValid
+     *
+     * @param boolean $isValid
+     *
+     * @return CostLine
+     */
+    public function setIsValid($isValid)
+    {
+        $this->isValid = $isValid;
+        return $this;
+    }
+    /**
+     * Get isValid
+     *
+     * @return boolean
+     */
+    public function getIsValid()
+    {
+        return $this->isValid;
     }
 }
