@@ -91,5 +91,4 @@ class Cost
     {
         return $this->reason;
     }
-
 }

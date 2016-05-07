@@ -25,7 +25,7 @@ trait GetCostsTrait
             $costs = $em->getRepository('frediAppBundle:CostUser')->findByUser($user);
 
             foreach ($costs as $cost) {
-                $costsArray[] = $cost->getCost();
+                $costsArray[] = $cost->getCostLine();
             }
         }
 

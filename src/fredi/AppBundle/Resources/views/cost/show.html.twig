@@ -34,26 +34,26 @@
             </tr>
             <tr>
                 <th>Prix du voyage</th>
-                <td>{{ costline.cost.journeyCost }}</td>
+                <td>{{ costline.journeyCost }}</td>
             </tr>
             <tr>
                 <th>Péage</th>
-                <td>{{ costline.cost.toll }}</td>
+                <td>{{ costline.toll }}</td>
             </tr>
             <tr>
                 <th>Repas</th>
-                <td>{{ costline.cost.meal }}</td>
+                <td>{{ costline.meal }}</td>
             </tr>
             <tr>
                 <th>Hébergement</th>
-                <td>{{ costline.cost.accommodation }}</td>
+                <td>{{ costline.accommodation }}</td>
             </tr>
             <tr>
                 <th>Total</th>
-                <td>{{ costline.cost.total }}</td>
+                <td>{{ costline.total }}</td>
             </tr>
         </tbody>
     </table>
     <a href="{{ path('cost_index') }}" class="btn btn-success pull-left">Retour</a>
-    <a href="{{ path('costline_edit', { 'id': costline.id }) }}" class="btn btn-primary pull-left">Modifier</a>
+    <a href="{{ path('cost_edit', { 'id': costline.id }) }}" class="btn btn-primary pull-left">Modifier</a>
 {% endblock %}

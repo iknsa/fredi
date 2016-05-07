@@ -26,27 +26,27 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
     {
         $userManager = $this->getContainer->get('fos_user.user_manager');
         
-        $admin = $userManager->createUser();
-        $admin->setUsername('admin');
-        $admin->setEmail('noreply.fredi@gmail.com');
-        $admin->setPlainPassword('admin');
-        $admin->setEnabled(true);
-        $admin->setLastLogin(new \Datetime('NOW'));
-        $admin->setRoles(array('ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_TREASURER'));
-        $manager->persist($admin);
+        $member1 = $userManager->createUser();
+        $member1->setUsername('nathan');
+        $member1->setEmail('nathan.lievin@gmail.com');
+        $member1->setPlainPassword('nathanlievin');
+        $member1->setEnabled(true);
+        $member1->setLastLogin(new \Datetime('NOW'));
+        $member1->setRoles(array('ROLE_MEMBER'));
+        $manager->persist($member1);
 
-        $member = $userManager->createUser();
-        $member->setUsername('member');
-        $member->setEmail('kosseyla.hamouche@gmail.com');
-        $member->setPlainPassword('member');
-        $member->setEnabled(true);
-        $member->setLastLogin(new \Datetime('NOW'));
-        $member->setRoles(array('ROLE_MEMBER'));
-        $manager->persist($member);
+        $member2 = $userManager->createUser();
+        $member2->setUsername('lea');
+        $member2->setEmail('lea.silbert@gmail.com');
+        $member2->setPlainPassword('leasilbert');
+        $member2->setEnabled(true);
+        $member2->setLastLogin(new \Datetime('NOW'));
+        $member2->setRoles(array('ROLE_MEMBER'));
+        $manager->persist($member2);
 
         $treasurer = $userManager->createUser();
         $treasurer->setUsername('treasurer');
-        $treasurer->setEmail('treasurer@fredi.com');
+        $treasurer->setEmail('treasurer@m2l.com');
         $treasurer->setPlainPassword('treasurer');
         $treasurer->setEnabled(true);
         $treasurer->setLastLogin(new \Datetime('NOW'));
@@ -54,8 +54,8 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
         $manager->persist($treasurer);
         $manager->flush();
 
-        $this->addReference('admin-admin', $admin);
-        $this->addReference('member-member', $member);
+        $this->addReference('member-member1', $member1);
+        $this->addReference('member-member2', $member2);
         $this->addReference('treasurer-treasurer', $treasurer);
     }
     /**

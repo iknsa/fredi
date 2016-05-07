@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use fredi\AppBundle\Entity\CostLine;
 use fredi\AppBundle\Form\CostTypeLine;
 use fredi\AppBundle\Entity\CostUser;
-use fredi\AppBundle\Traits\GetCostsTrait;
+use fredi\AppBundle\Traits\GetAssociationsTrait;
 
 /**
  * Cost controller.
@@ -16,15 +16,17 @@ use fredi\AppBundle\Traits\GetCostsTrait;
  */
 class CostController extends Controller
 {
-    use GetCostsTrait;
+    use GetAssociationsTrait;
 
     /**
      * Lists all Cost entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $costs = $this->getCosts();
+        $em = $this->getDoctrine()->getManager();
+
+        $costs = $em->getRepository('frediAppBundle:CostLine')->findAll();
 
         return $this->render('frediAppBundle:cost:index.html.twig', array(
             'costs' => $costs,

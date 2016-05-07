@@ -8,7 +8,7 @@ use fredi\AppBundle\Entity\Association;
 use fredi\AppBundle\Form\AssociationType;
 use fredi\AppBundle\Traits\GetAssociationsTrait;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use Symfony\Component\Process\Exception\LogicException;
 
 /**
  * Association controller.

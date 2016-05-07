@@ -1,40 +1,55 @@
 {% extends '::fredi/base.html.twig' %}
 
 {% block body %}
-    <h1>CostLine</h1>
-
-    <table>
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Frais</h3>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-checkable table-responsive">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ costLine.id }}</td>
+                <th>Date</th>
+                <td>{% if costLine.cost.date %}{{ costLine.cost.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Citystart</th>
+                <th>Ville de départ</th>
                 <td>{{ costLine.cityStart }}</td>
             </tr>
             <tr>
-                <th>Cityend</th>
+                <th>Ville d'arrivée</th>
                 <td>{{ costLine.cityEnd }}</td>
             </tr>
             <tr>
                 <th>Distance</th>
                 <td>{{ costLine.distance }}</td>
             </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ costLine.cost.reason.name }}</td>
+            </tr>
+            <tr>
+                <th>Prix du voyage</th>
+                <td>{{ costLine.journeyCost }}</td>
+            </tr>
+            <tr>
+                <th>Péage</th>
+                <td>{{ costLine.toll }}</td>
+            </tr>
+            <tr>
+                <th>Repas</th>
+                <td>{{ costLine.meal }}</td>
+            </tr>
+            <tr>
+                <th>Hébergement</th>
+                <td>{{ costLine.accommodation }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ costLine.total }}</td>
+            </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('costline_index', { 'associationUniqueId': associationUniqueId }) }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a href="{{ path('costline_index', { 'associationUniqueId': associationUniqueId }) }}" class="btn btn-success pull-right">Retour</a>
+    <a href="{{ path('costline_edit', { 'id': costLine.id, 'associationUniqueId': associationUniqueId }) }}"class="btn btn-primary pull-left">Modifier</a>
 {% endblock %}

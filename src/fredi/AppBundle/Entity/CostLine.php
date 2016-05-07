@@ -85,6 +85,16 @@ class CostLine
      */
     private $cost;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Association")
+     */
+    private $association;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Member")
+     */
+    private $member;
+
     /**
      * Get id
      *
@@ -94,11 +104,6 @@ class CostLine
     {
         return $this->id;
     }
-
-    /**
-     * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Association")
-     */
-    private $association;
 
     /**
      * Set cityStart
@@ -319,7 +324,7 @@ class CostLine
      *
      * @param \fredi\AppBundle\Entity\Association $association
      *
-     * @return AssociationUser
+     * @return CostLine
      */
     public function setAssociation(\fredi\AppBundle\Entity\Association $association = null)
     {
