@@ -13,3 +13,11 @@ fredi_app_association:
 fredi_app_homepage:
     path:     /
     defaults: { _controller: frediAppBundle:App:landing }
+
+fredi_app_reservation:
+        resource: "@frediAppBundle/Resources/config/routing/reservation.yml"
+        prefix:   /reservation
+
+fredi_app_reservationline:
+        resource: "@frediAppBundle/Resources/config/routing/reservationline.yml"
+        prefix:   /reservationline

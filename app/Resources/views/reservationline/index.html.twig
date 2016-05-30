@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ReservationLine list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservationLine in reservationLines %}
+            <tr>
+                <td><a href="{{ path('reservationline_show', { 'id': reservationLine.id }) }}">{{ reservationLine.id }}</a></td>
+                <td>{% if reservationLine.date %}{{ reservationLine.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservationline_show', { 'id': reservationLine.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservationline_edit', { 'id': reservationLine.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservationline_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

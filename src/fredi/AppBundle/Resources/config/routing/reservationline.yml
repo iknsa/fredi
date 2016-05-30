@@ -1,0 +1,24 @@
+reservationline_index:
+    path:     /
+    defaults: { _controller: "frediAppBundle:ReservationLine:index" }
+    methods:  GET
+
+reservationline_show:
+    path:     /{id}/show
+    defaults: { _controller: "frediAppBundle:ReservationLine:show" }
+    methods:  GET
+
+reservationline_new:
+    path:     /new
+    defaults: { _controller: "frediAppBundle:ReservationLine:new" }
+    methods:  [GET, POST]
+
+reservationline_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "frediAppBundle:ReservationLine:edit" }
+    methods:  [GET, POST]
+
+reservationline_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "frediAppBundle:ReservationLine:delete" }
+    methods:  DELETE

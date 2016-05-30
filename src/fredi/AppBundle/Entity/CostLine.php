@@ -85,7 +85,7 @@ class CostLine
      */
     private $cost;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="fredi\AppBundle\Entity\Association")
      */
     private $association;

@@ -6,8 +6,10 @@
                 {% if is_granted("ROLE_MEMBER") %}
                     <li><a href="{{ path('costline_new', {'associationUniqueId': associationUniqueId}) }}">Enregistrer une note de frais</a></li>
                     <li><a href="{{ path('costline_index', { 'associationUniqueId': associationUniqueId }) }}">Consulter le bordereau</a></li>
+                    <li><a href="{{ path('reservation_new', { 'associationUniqueId': associationUniqueId }) }}">Saisir une réservation de cars</a></li>
+                    <li><a href="{{ path('reservation_index', { 'associationUniqueId': associationUniqueId }) }}">Consulter les réservations</a></li>
                 {% endif %}
-                <li><a href="{{ path('fredi_association_unset') }}">Changer de Bordereau</a></li>
+                <li><a href="{{ path('fredi_association_unset') }}">Changer d'association</a></li>
                 {% if is_granted("ROLE_TREASURER") %}
                     <li><a href="{{ path('cost_index', {'associationUniqueId': associationUniqueId }) }}">Consulter les bordereau</a></li>
                 {% endif %}

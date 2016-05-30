@@ -11,6 +11,6 @@
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Enregistrer" class="btn btn-success pull-left" />
-        <a href="{{ path('costline_index', {'associationUniqueId': associationUniqueId}) }}" class="btn btn-info pull-left">Retour</a>
+        <a href="{{ path('costline_index') }}" class="btn btn-info pull-left">Retour</a>
     {{ form_end(form) }}
 {% endblock %}
